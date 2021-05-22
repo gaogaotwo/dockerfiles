@@ -1,6 +1,6 @@
 # web server
 nginx:
-  image: reg.zuolan.me/library/nginx:alpine
+  image: nginx:alpine
   ports:
     - "80:80"
     # - "443:443"
@@ -17,10 +17,11 @@ nginx:
 
 # php-fpm
 fpm:
-  image: reg.zuolan.me/library/php:7.0-fpm
+  image: php:7.0-fpm
   ports:
     - "9000:9000"
   volumes:
+  #目录地址映射 
     - /home/zuolan/docker/app/:/usr/share/nginx/html
     # Your php.ini
     - /home/zuolan/docker/php/php.ini-production:/usr/local/etc/php/php.ini:ro
@@ -36,7 +37,7 @@ fpm:
 
 # database
 mysql:
-  image: reg.zuolan.me/library/mysql:5.6
+  image: mysql:5.6
   ports:
     # Allow client to access 3306
     - "3306:3306"
